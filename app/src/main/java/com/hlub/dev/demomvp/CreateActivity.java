@@ -66,7 +66,7 @@ public class CreateActivity extends AppCompatActivity {
         createEmp.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                
+
                 Toast.makeText(CreateActivity.this, "Thêm nhân viên thành công", Toast.LENGTH_SHORT).show();
 
                 //Toast.makeText(CreateActivity.this, "Trùng lặp nhân viên: " + edtName.getText().toString(), Toast.LENGTH_SHORT).show();
