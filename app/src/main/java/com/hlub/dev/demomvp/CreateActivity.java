@@ -9,17 +9,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.hlub.dev.demomvp.entity.Employee;
-import com.hlub.dev.demomvp.entity.Model;
 import com.hlub.dev.demomvp.retrofit.EmployeeRetrofit;
-import com.hlub.dev.demomvp.retrofit.EmployeeService;
 
 import java.io.IOException;
-import java.util.List;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -53,38 +46,47 @@ public class CreateActivity extends AppCompatActivity {
         btnCreate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                Call<Model> createEmp = EmployeeRetrofit.getInstance().createEmployee(getEmployeeFromView());
-
-                createEmp.enqueue(new Callback<Model>() {
-                    @Override
-                    public void onResponse(Call<Model> call, Response<Model> response) {
-                        Toast.makeText(CreateActivity.this, "Thành công", Toast.LENGTH_SHORT).show();
-                    }
-
-                    @Override
-                    public void onFailure(Call<Model> call, Throwable t) {
-                        Toast.makeText(CreateActivity.this, "Thất bại", Toast.LENGTH_SHORT).show();
-                        Log.e("create",t.toString());
-                    }
-                });
+                createEmployee();
 
             }
         });
     }
 
-    private Model getEmployeeFromView() {
-        Model model = new Model();
-        model.setId(String.valueOf(System.currentTimeMillis()));
-//        nv.setEmployeeName(edtName.getText().toString());
-//        nv.setEmployeeSalary(String.valueOf(edtSalary.getText().toString()));
-//        nv.setEmployeeAge(String.valueOf(edtAge.getText().toString()));
-        model.setEmployeeName("1234");
-        model.setEmployeeSalary("1234");
-        model.setEmployeeAge("1234");
-        model.setProfileImage("1234");
+    private void createEmployee() {
 
-        return model;
+        final JsonObject jsonObject = new JsonObject();
+        jsonObject.addProperty("name", edtName.getText().toString());
+        jsonObject.addProperty("salary", edtSalary.getText().toString());
+        jsonObject.addProperty("age", edtAge.getText().toString());
+
+        if (edtName.getText().toString().isEmpty()) {
+            Toast.makeText(this, "Phải nhập tên nhân viên", Toast.LENGTH_SHORT).show();
+        }
+        Call<ResponseBody> createEmp = EmployeeRetrofit.getInstance().createEmployee(jsonObject);
+        createEmp.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                
+                Toast.makeText(CreateActivity.this, "Thêm nhân viên thành công", Toast.LENGTH_SHORT).show();
+
+                //Toast.makeText(CreateActivity.this, "Trùng lặp nhân viên: " + edtName.getText().toString(), Toast.LENGTH_SHORT).show();
+
+                setViewEmpity();
+
+                try {
+                    Log.e("create", response.body().string());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                Toast.makeText(CreateActivity.this, "Thêm nhân viên thất bại", Toast.LENGTH_SHORT).show();
+                Log.e("create", t.toString());
+            }
+        });
     }
 
     private void setViewEmpity() {

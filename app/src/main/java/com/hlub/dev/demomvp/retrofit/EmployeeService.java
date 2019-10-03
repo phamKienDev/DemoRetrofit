@@ -2,18 +2,13 @@ package com.hlub.dev.demomvp.retrofit;
 
 import com.google.gson.JsonObject;
 import com.hlub.dev.demomvp.entity.Employee;
-import com.hlub.dev.demomvp.entity.Model;
 
 import java.util.List;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
-import retrofit2.http.Field;
-import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Headers;
 import retrofit2.http.POST;
@@ -32,5 +27,7 @@ public interface EmployeeService {
             "Content-Type:application/json"
     })
     @POST("/api/v1/create")
-    Call<Model> createEmployee(@Body Model model);
+    Call<ResponseBody> createEmployee(@Body JsonObject model);
+
+
 }

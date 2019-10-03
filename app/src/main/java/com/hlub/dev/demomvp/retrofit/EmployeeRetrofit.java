@@ -21,7 +21,7 @@ public class EmployeeRetrofit {
         if (employeeService == null) {
             Retrofit retrofit = new Retrofit.Builder()
                     .baseUrl("http://dummy.restapiexample.com")
-                    .addConverterFactory(GsonConverterFactory.create())
+                    .addConverterFactory(GsonConverterFactory.create(gson))
                     .build();
 
             employeeService = retrofit.create(EmployeeService.class);
