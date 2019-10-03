@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="recycleviewEmployee" type="id"/>
+    <item name="flAddEmployee" type="id"/>
+    <item name="tvItemName" type="id"/>
+    <item name="tvItemAge" type="id"/>
+    <item name="tvItemMoney" type="id"/>
+    <item name="imgItemDelete" type="id"/>
+    <item name="edtName" type="id"/>
+    <item name="edtAge" type="id"/>
+    <item name="edtSalary" type="id"/>
+</resources>

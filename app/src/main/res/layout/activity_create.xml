@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".CreateActivity">
+
+    <include
+        android:id="@+id/toolbar_create"
+        layout="@layout/app_bar_layout" />
+
+    <EditText
+        android:id="@id/edtName"
+        style="@style/BackgroundEditText"
+        android:layout_below="@id/toolbar_create"
+        android:hint="Name"
+        android:imeOptions="actionNext"
+        android:inputType="text" />
+
+    <EditText
+        android:id="@id/edtAge"
+        style="@style/BackgroundEditText"
+        android:layout_below="@id/edtName"
+        android:hint="Age"
+        android:imeOptions="actionNext"
+        android:inputType="number" />
+
+    <EditText
+        android:id="@id/edtSalary"
+        style="@style/BackgroundEditText"
+        android:layout_below="@id/edtAge"
+        android:hint="Salary"
+        android:imeOptions="actionDone"
+        android:inputType="number" />
+
+    <Button
+        android:id="@+id/btnCreate"
+        style="@style/BackgroundButton"
+        android:text="Thêm" />
+</RelativeLayout>

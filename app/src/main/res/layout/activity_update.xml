@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".UpdateActivity">
+    <include
+        android:id="@+id/toolbar_update"
+        layout="@layout/app_bar_layout" />
+
+    <EditText
+        android:id="@id/edtName"
+        style="@style/BackgroundEditText"
+        android:layout_below="@id/toolbar_update"
+        android:hint="Name"
+
+
+        />
+
+    <EditText
+        android:id="@id/edtAge"
+        style="@style/BackgroundEditText"
+        android:layout_below="@id/edtName"
+        android:hint="Age" />
+
+    <EditText
+        android:id="@id/edtSalary"
+        style="@style/BackgroundEditText"
+        android:layout_below="@id/edtAge"
+        android:hint="Salary" />
+
+    <Button
+        android:id="@+id/btnUpdate"
+        style="@style/BackgroundButton"
+        android:text="Cập nhật" />
+
+</RelativeLayout>
